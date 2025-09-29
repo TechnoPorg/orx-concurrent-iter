@@ -61,7 +61,7 @@ where
     P: ChunkPuller + 'c,
 {
     puller: P,
-    current_chunk: P::Chunk<'c>,
+    current_chunk: Option<P::Chunk<'c>>,
 }
 
 impl<P> From<P> for FlattenedChunkPuller<'_, P>
@@ -71,7 +71,7 @@ where
     fn from(puller: P) -> Self {
         Self {
             puller,
-            current_chunk: Default::default(),
+            current_chunk: None,
         }
     }
 }
@@ -90,7 +90,7 @@ where
         let puller = unsafe { &mut *(&mut self.puller as *mut P) };
         match puller.pull() {
             Some(chunk) => {
-                self.current_chunk = chunk;
+                self.current_chunk = Some(chunk);
                 self.next()
             }
             None => None,
@@ -105,10 +105,15 @@ where
     type Item = P::ChunkItem;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let next = self.current_chunk.next();
-        match next.is_some() {
-            true => next,
-            false => self.next_chunk(),
+        match &mut self.current_chunk {
+            Some(chunk) => {
+                let next = chunk.next();
+                match next.is_some() {
+                    true => next,
+                    false => self.next_chunk(),
+                }
+            }
+            None => self.next_chunk(),
         }
     }
 }

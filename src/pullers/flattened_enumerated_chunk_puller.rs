@@ -47,7 +47,7 @@ where
 {
     puller: P,
     current_begin_idx: usize,
-    current_chunk: Enumerate<P::Chunk<'c>>,
+    current_chunk: Option<Enumerate<P::Chunk<'c>>>,
 }
 
 impl<'c, P> From<P> for FlattenedEnumeratedChunkPuller<'c, P>
@@ -58,7 +58,7 @@ where
         Self {
             puller,
             current_begin_idx: 0,
-            current_chunk: Default::default(),
+            current_chunk: None,
         }
     }
 }
@@ -78,7 +78,7 @@ where
         match puller.pull_with_idx() {
             Some((begin_idx, chunk)) => {
                 self.current_begin_idx = begin_idx;
-                self.current_chunk = chunk.enumerate();
+                self.current_chunk = Some(chunk.enumerate());
                 self.next()
             }
             None => None,
@@ -93,8 +93,11 @@ where
     type Item = (usize, P::ChunkItem);
 
     fn next(&mut self) -> Option<Self::Item> {
-        match self.current_chunk.next() {
-            Some((i, x)) => Some((self.current_begin_idx + i, x)),
+        match &mut self.current_chunk {
+            Some(chunk) => match chunk.next() {
+                Some((i, x)) => Some((self.current_begin_idx + i, x)),
+                None => self.next_chunk(),
+            },
             None => self.next_chunk(),
         }
     }
