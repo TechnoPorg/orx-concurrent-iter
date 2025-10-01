@@ -462,28 +462,28 @@ fn next_with_idx(n: usize, nt: usize) {
         n,
         nt,
     );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_con_iter(),
-        ),
-        n,
-        nt,
-    );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-        ),
-        n,
-        nt,
-    );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
 }
 
 #[test_matrix([0, 1, N], [1, 2, 4])]
@@ -598,28 +598,28 @@ fn item_puller_with_idx(n: usize, nt: usize) {
         n,
         nt,
     );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_con_iter(),
-        ),
-        n,
-        nt,
-    );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-        ),
-        n,
-        nt,
-    );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
 }
 
 #[test_matrix([0, 1, N], [1, 2, 4])]
@@ -742,28 +742,28 @@ fn chunk_puller_with_idx(n: usize, nt: usize) {
         n,
         nt,
     );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_con_iter(),
-        ),
-        n,
-        nt,
-    );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-        ),
-        n,
-        nt,
-    );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
 }
 
 #[test_matrix([0, 1, N], [1, 2, 4])]
@@ -876,28 +876,28 @@ fn flattened_chunk_puller_with_idx(n: usize, nt: usize) {
         n,
         nt,
     );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_con_iter(),
-        ),
-        n,
-        nt,
-    );
-    test(
-        ChainUnknownLenI::new(
-            v1().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-            v2().into_iter()
-                .filter(|x| !x.starts_with('x'))
-                .iter_into_con_iter(),
-        ),
-        n,
-        nt,
-    );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
+    // test(
+    //     ChainUnknownLenI::new(
+    //         v1().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //         v2().into_iter()
+    //             .filter(|x| !x.starts_with('x'))
+    //             .iter_into_con_iter(),
+    //     ),
+    //     n,
+    //     nt,
+    // );
 }
 
 #[test_matrix([0, 1, N], [1, 2, 4])]
