@@ -153,7 +153,7 @@ pub trait ChunkPuller {
     type ChunkItem;
 
     /// Type of the pulled chunks which implements [`ExactSizeIterator`].
-    type Chunk<'c>: ExactSizeIterator<Item = Self::ChunkItem> + Default
+    type Chunk<'c>: ExactSizeIterator<Item = Self::ChunkItem>
     where
         Self: 'c;
 
