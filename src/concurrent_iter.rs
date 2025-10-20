@@ -571,6 +571,34 @@ pub trait ConcurrentIter: Sync {
         }
     }
 
+    /// Returns true if the concurrent iterator which has returned `None` for a [`next`]
+    /// or [`pull`] call will continue to return `None`.
+    ///
+    /// Note that most concurrent iterators shared the behavior of a [`FusedIterator`];
+    /// therefore, this method returns `true` in most of the cases.
+    ///
+    /// However, there are dynamic or recursive iterators which can concurrently grow,
+    /// while at the same time we are pulling elements from it. In such a concurrent iterator,
+    /// there might be an instant where `next` returns `None` while another thread is adding
+    /// elements to the concurrent iterator. This means that a future `next` call will return
+    /// `Some(element)`. This method is useful for such iterators. We can stop trying to pull
+    /// elements if we receive a `None` and `is_completed_when_none_returned` returns `true`.
+    /// If we receive a `None` but `is_completed_when_none_returned` returns `false`, it is
+    /// possible that a future try will return an element.
+    ///
+    /// Such an example concurrent iterator is the
+    /// [`ConcurrentRecursiveIter`](https://crates.io/crates/orx-concurrent-recursive-iter).
+    /// In this recursive iterator, each pulled element might add some elements to the end
+    /// of the iterator. Pulling of elements and expansion happens concurrently.
+    ///
+    /// [`next`]: ConcurrentIter::next
+    /// [`pull`]: ChunkPuller::pull
+    /// [`FusedIterator`]: core::iter::FusedIterator
+    #[inline(always)]
+    fn is_completed_when_none_returned(&self) -> bool {
+        true
+    }
+
     // pullers
 
     /// Creates a [`ChunkPuller`] from the concurrent iterator.
