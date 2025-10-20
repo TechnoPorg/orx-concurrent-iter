@@ -594,10 +594,7 @@ pub trait ConcurrentIter: Sync {
     /// [`next`]: ConcurrentIter::next
     /// [`pull`]: ChunkPuller::pull
     /// [`FusedIterator`]: core::iter::FusedIterator
-    #[inline(always)]
-    fn is_completed_when_none_returned(&self) -> bool {
-        true
-    }
+    fn is_completed_when_none_returned(&self) -> bool;
 
     // pullers
 

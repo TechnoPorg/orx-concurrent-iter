@@ -90,6 +90,10 @@ where
         }
     }
 
+    fn is_completed_when_none_returned(&self) -> bool {
+        true
+    }
+
     fn chunk_puller(&self, chunk_size: usize) -> Self::ChunkPuller<'_> {
         ChainedChunkPullerUnknownLenI::new(self, chunk_size)
     }
