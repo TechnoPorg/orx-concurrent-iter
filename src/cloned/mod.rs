@@ -1,6 +1,3 @@
-#[cfg(test)]
-mod tests;
-
 mod chunk_puller;
 mod con_iter;
 

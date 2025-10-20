@@ -69,6 +69,10 @@ where
         self.iter.size_hint()
     }
 
+    fn is_completed_when_none_returned(&self) -> bool {
+        true
+    }
+
     fn chunk_puller(&self, chunk_size: usize) -> Self::ChunkPuller<'_> {
         Self::ChunkPuller::new(self.iter.chunk_puller(chunk_size))
     }
