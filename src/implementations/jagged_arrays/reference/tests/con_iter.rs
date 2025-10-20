@@ -46,6 +46,8 @@ fn enumeration() {
     assert_eq!(iter.next_with_idx(), None);
     assert_eq!(iter.next(), None);
     assert_eq!(iter.next_with_idx(), None);
+
+    assert!(iter.is_completed_when_none_returned());
 }
 
 #[test]
