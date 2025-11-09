@@ -1,3 +1,5 @@
+use core::slice::Chunks;
+
 use alloc::vec::Vec;
 
 /// A collection of slices.
@@ -52,5 +54,31 @@ impl<'a, T: 'a> Slices<'a, T> for &'a [Vec<T>] {
 
     unsafe fn slice_at_unchecked(&self, f: usize) -> &'a [T] {
         self[f].as_slice()
+    }
+}
+
+impl<'a, T: 'a> Slices<'a, T> for Chunks<'a, T> {
+    fn empty() -> Self {
+        [].chunks(1)
+    }
+
+    fn num_slices(&self) -> usize {
+        self.len()
+    }
+
+    fn slices(&self) -> impl Iterator<Item = &'a [T]> {
+        self.clone()
+    }
+
+    fn lengths(&self) -> impl Iterator<Item = usize> {
+        self.clone().map(|x| x.len())
+    }
+
+    fn slice_at(&self, f: usize) -> Option<&'a [T]> {
+        self.clone().nth(f)
+    }
+
+    unsafe fn slice_at_unchecked(&self, f: usize) -> &'a [T] {
+        self.clone().nth(f).unwrap()
     }
 }
