@@ -38,6 +38,8 @@ pub mod cloned;
 pub mod copied;
 /// Enumerated transformation of concurrent iterators.
 pub mod enumerate;
+mod zip;
+pub use zip::ConIterZip;
 
 // exported types
 

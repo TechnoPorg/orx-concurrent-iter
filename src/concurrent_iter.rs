@@ -1,5 +1,5 @@
 use crate::{
-    IntoConcurrentIter,
+    ConIterZip, IntoConcurrentIter,
     chain::ChainUnknownLenI,
     cloned::ConIterCloned,
     copied::ConIterCopied,
@@ -982,5 +982,14 @@ pub trait ConcurrentIter: Sync {
         Self: Sized,
     {
         ChainUnknownLenI::new(self, other.into_con_iter())
+    }
+
+    /// Zips together this iterator with another
+    fn zip<Z>(self, other: Z) -> ConIterZip<Self, Z::IntoIter>
+    where
+        Z: IntoConcurrentIter,
+        Self: Sized,
+    {
+        ConIterZip::new(self, other.into_con_iter())
     }
 }
